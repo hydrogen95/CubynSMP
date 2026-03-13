@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CubynSMP - Economy Survival Minecraft Server</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="bg-gradient"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-particles" id="particles"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <img src="logo.png" alt="CubynSMP">
+                <span>CubynSMP</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#server" class="nav-link">Server</a></li>
+                <li><a href="#ranks" class="nav-link">Ranks</a></li>
+                <li><a href="https://discord.gg/XaUBr97NUW" class="nav-link discord-link" target="_blank">
+                    <i class="fab fa-discord"></i> Discord
+                </a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-logo-container">
+                <img src="logo.png" alt="CubynSMP Logo" class="hero-logo">
+                <div class="logo-glow"></div>
+            </div>
+            <h1 class="hero-title">
+                <span class="title-gradient">CubynSMP</span>
+            </h1>
+            <p class="hero-tagline" id="tagline">Economy Survival Reimagined</p>
+            <p class="hero-description">Join the ultimate competitive Economy Survival experience. Trade, build, and dominate in a dynamic player-driven world.</p>
+            <div class="hero-buttons">
+                <a href="#server" class="btn btn-primary btn-glow">
+                    <i class="fas fa-gamepad"></i>
+                    <span>Join Server</span>
+                </a>
+                <a href="#ranks" class="btn btn-secondary btn-glow">
+                    <i class="fas fa-crown"></i>
+                    <span>View Ranks</span>
+                </a>
+                <a href="https://discord.gg/XaUBr97NUW" class="btn btn-discord btn-glow" target="_blank">
+                    <i class="fab fa-discord"></i>
+                    <span>Join Discord</span>
+                </a>
+            </div>
+        </div>
+        <div class="hero-stats">
+            <div class="stat-card" id="statusCard">
+                <div class="stat-icon">
+                    <i class="fas fa-server"></i>
+                </div>
+                <div class="stat-info">
+                    <span class="stat-label">Server Status</span>
+                    <span class="stat-value" id="serverStatus">Checking...</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="stat-info">
+                    <span class="stat-label">Players Online</span>
+                    <span class="stat-value" id="playerCount">-</span>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-mouse">
+                <div class="scroll-wheel"></div>
+            </div>
+            <span>Scroll to explore</span>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-badge">About Us</span>
+                <h2 class="section-title">What is <span class="text-gradient">CubynSMP</span>?</h2>
+                <p class="section-subtitle">Experience survival like never before</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="about-description" id="serverDescription">
+                        CubynSMP is a competitive Economy Survival Minecraft server inspired by the gameplay style of DonutSMP. Players progress by earning money, trading resources, building bases, and competing with other players in a dynamic economy-driven survival world.
+                    </p>
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-coins"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h3>Economy System</h3>
+                                <p>Player-driven economy with trading and market gameplay</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h3>Competitive PvP</h3>
+                                <p>Balanced PvP mechanics for fair combat</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h3>Progression</h3>
+                                <p>Grinding and money progression system</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h3>Community</h3>
+                                <p>Community-based survival economy</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <div class="visual-card">
+                        <div class="card-glow"></div>
+                        <div class="visual-content">
+                            <i class="fas fa-cube"></i>
+                            <span>Survival</span>
+                        </div>
+                    </div>
+                    <div class="visual-card">
+                        <div class="card-glow"></div>
+                        <div class="visual-content">
+                            <i class="fas fa-store"></i>
+                            <span>Economy</span>
+                        </div>
+                    </div>
+                    <div class="visual-card">
+                        <div class="card-glow"></div>
+                        <div class="visual-content">
+                            <i class="fas fa-trophy"></i>
+                            <span>Competition</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Server Info Section -->
+    <section class="server-info" id="server">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-badge">Connect</span>
+                <h2 class="section-title">Join Our <span class="text-gradient">Server</span></h2>
+                <p class="section-subtitle">Start your adventure today</p>
+            </div>
+            <div class="server-cards">
+                <div class="server-card main-card">
+                    <div class="card-shine"></div>
+                    <div class="server-card-header">
+                        <i class="fas fa-server"></i>
+                        <span>Server Address</span>
+                    </div>
+                    <div class="server-address">
+                        <span class="address-text" id="serverIp">suffer.srein.xyz</span>
+                        <button class="copy-btn" id="copyIp" title="Copy IP">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                    <div class="server-port">
+                        <span>Port: <strong id="serverPort">25567</strong></span>
+                    </div>
+                    <div class="server-status-panel" id="statusPanel">
+                        <div class="status-indicator" id="statusIndicator"></div>
+                        <span class="status-text" id="statusText">Checking status...</span>
+                    </div>
+                </div>
+                <div class="server-card stats-card">
+                    <div class="card-shine"></div>
+                    <div class="live-stats">
+                        <div class="live-stat">
+                            <span class="live-label">Online Players</span>
+                            <span class="live-value" id="onlinePlayers">-</span>
+                        </div>
+                        <div class="live-stat">
+                            <span class="live-label">Max Players</span>
+                            <span class="live-value" id="maxPlayers">-</span>
+                        </div>
+                        <div class="live-stat">
+                            <span class="live-label">Version</span>
+                            <span class="live-value" id="serverVersion">-</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ranks Section -->
+    <section class="ranks" id="ranks">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-badge">Premium</span>
+                <h2 class="section-title">Server <span class="text-gradient">Ranks</span></h2>
+                <p class="section-subtitle">Unlock exclusive perks and commands</p>
+            </div>
+            <div class="ranks-grid" id="ranksGrid">
+                <!-- Ranks will be dynamically inserted here -->
+            </div>
+            <div class="ranks-note">
+                <i class="fas fa-info-circle"></i>
+                <span>Contact server staff to purchase ranks. All purchases support server maintenance.</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Discord CTA Section -->
+    <section class="discord-cta">
+        <div class="section-container">
+            <div class="discord-card">
+                <div class="discord-glow"></div>
+                <div class="discord-content">
+                    <i class="fab fa-discord discord-icon"></i>
+                    <h2>Join Our Community</h2>
+                    <p>Connect with other players, get support, and stay updated with the latest news</p>
+                    <a href="https://discord.gg/XaUBr97NUW" class="btn btn-discord-large" target="_blank">
+                        <i class="fab fa-discord"></i>
+                        <span>Join Discord Server</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <img src="logo.png" alt="CubynSMP" class="footer-logo">
+                <span class="footer-name">CubynSMP</span>
+                <p class="footer-tagline">Economy Survival Reimagined</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#server">Server</a></li>
+                        <li><a href="#ranks">Ranks</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="https://discord.gg/XaUBr97NUW" target="_blank">Discord</a></li>
+                        <li><a href="#server">Join Server</a></li>
+                        <li><a href="#ranks">Get Rank</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Admin</h4>
+                    <ul>
+                        <li><a href="login.html">Admin Panel</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 CubynSMP. All rights reserved.</p>
+                <p class="footer-credit">Made with <i class="fas fa-heart"></i> for Minecraft players</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Copied to clipboard!</span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

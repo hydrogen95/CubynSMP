@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - CubynSMP</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .admin-body {
+            min-height: 100vh;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .admin-container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(30, 58, 95, 0.3);
+            backdrop-filter: blur(20px);
+            border-radius: 32px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            padding: 2.5rem;
+        }
+        
+        .admin-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+        }
+        
+        .admin-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .admin-brand img {
+            height: 50px;
+            filter: drop-shadow(0 0 10px var(--glow-blue));
+        }
+        
+        .admin-brand h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+        }
+        
+        .admin-brand span {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-weight: 500;
+        }
+        
+        .admin-actions {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn-admin {
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: none;
+            text-decoration: none;
+        }
+        
+        .btn-save {
+            background: linear-gradient(135deg, var(--success), #00a344);
+            color: white;
+        }
+        
+        .btn-save:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 200, 83, 0.4);
+        }
+        
+        .btn-logout {
+            background: rgba(255, 23, 68, 0.2);
+            color: var(--error);
+            border: 1px solid var(--error);
+        }
+        
+        .btn-logout:hover {
+            background: var(--error);
+            color: white;
+        }
+        
+        .btn-view {
+            background: rgba(0, 212, 255, 0.2);
+            color: var(--accent);
+            border: 1px solid var(--accent);
+        }
+        
+        .btn-view:hover {
+            background: var(--accent);
+            color: var(--primary);
+        }
+        
+        .admin-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+        
+        .admin-card {
+            background: rgba(10, 22, 40, 0.5);
+            border-radius: 20px;
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            padding: 1.5rem;
+        }
+        
+        .admin-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .admin-card h3 i {
+            font-size: 1rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+        
+        .form-group label {
+            display: block;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            background: rgba(10, 22, 40, 0.5);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            transition: var(--transition-fast);
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
+        }
+        
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .rank-editor {
+            background: rgba(30, 58, 95, 0.3);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(0, 212, 255, 0.1);
+        }
+        
+        .rank-editor-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .rank-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .perks-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .perk-item {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .perk-item input {
+            flex: 1;
+        }
+        
+        .btn-small {
+            padding: 0.5rem;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 8px;
+            color: var(--accent);
+            cursor: pointer;
+            transition: var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .btn-small:hover {
+            background: var(--accent);
+            color: var(--primary);
+        }
+        
+        .btn-remove {
+            background: rgba(255, 23, 68, 0.1);
+            border-color: rgba(255, 23, 68, 0.3);
+            color: var(--error);
+        }
+        
+        .btn-remove:hover {
+            background: var(--error);
+            color: white;
+        }
+        
+        .add-perk-btn {
+            margin-top: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px dashed rgba(0, 212, 255, 0.4);
+            border-radius: 8px;
+            color: var(--accent);
+            cursor: pointer;
+            transition: var(--transition-fast);
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+        }
+        
+        .add-perk-btn:hover {
+            background: rgba(0, 212, 255, 0.2);
+        }
+        
+        .features-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .feature-item {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .feature-item input {
+            flex: 1;
+        }
+        
+        .toast-container {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            z-index: 9999;
+        }
+        
+        .toast {
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            color: white;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            animation: slideIn 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .toast.success {
+            background: rgba(0, 200, 83, 0.9);
+        }
+        
+        .toast.error {
+            background: rgba(255, 23, 68, 0.9);
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .admin-body {
+                padding: 1rem;
+            }
+            
+            .admin-container {
+                padding: 1.5rem;
+            }
+            
+            .admin-header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .admin-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="admin-body">
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="bg-gradient"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-particles" id="particles"></div>
+    </div>
+    
+    <div class="admin-container">
+        <div class="admin-header">
+            <div class="admin-brand">
+                <img src="logo.png" alt="CubynSMP">
+                <div>
+                    <h1>Admin Panel</h1>
+                    <span>Manage your server website</span>
+                </div>
+            </div>
+            <div class="admin-actions">
+                <a href="index.html" class="btn-admin btn-view" target="_blank">
+                    <i class="fas fa-external-link-alt"></i>
+                    View Site
+                </a>
+                <button class="btn-admin btn-save" id="saveAllBtn">
+                    <i class="fas fa-save"></i>
+                    Save Changes
+                </button>
+                <button class="btn-admin btn-logout" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </button>
+            </div>
+        </div>
+        
+        <div class="admin-grid">
+            <!-- Server Info Card -->
+            <div class="admin-card">
+                <h3><i class="fas fa-server"></i> Server Information</h3>
+                <div class="form-group">
+                    <label>Server Name</label>
+                    <input type="text" id="serverName" placeholder="Server Name">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Server IP</label>
+                        <input type="text" id="serverIp" placeholder="Server IP">
+                    </div>
+                    <div class="form-group">
+                        <label>Port</label>
+                        <input type="number" id="serverPort" placeholder="Port">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Tagline</label>
+                    <input type="text" id="serverTagline" placeholder="Short tagline">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="serverDescription" placeholder="Server description..."></textarea>
+                </div>
+            </div>
+            
+            <!-- Discord Card -->
+            <div class="admin-card">
+                <h3><i class="fab fa-discord"></i> Discord Integration</h3>
+                <div class="form-group">
+                    <label>Discord Invite Link</label>
+                    <input type="url" id="discordLink" placeholder="https://discord.gg/...">
+                </div>
+            </div>
+            
+            <!-- Features Card -->
+            <div class="admin-card">
+                <h3><i class="fas fa-list"></i> Server Features</h3>
+                <div class="features-list" id="featuresList">
+                    <!-- Features will be loaded here -->
+                </div>
+                <button class="add-perk-btn" id="addFeatureBtn">
+                    <i class="fas fa-plus"></i>
+                    Add Feature
+                </button>
+            </div>
+            
+            <!-- Ranks Card -->
+            <div class="admin-card" style="grid-column: span 2;">
+                <h3><i class="fas fa-crown"></i> Rank Management</h3>
+                <div id="ranksContainer">
+                    <!-- Ranks will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="toast-container" id="toastContainer"></div>
+    
+    <script>
+        // Initialize particles
+        const particles = document.getElementById('particles');
+        for (let i = 0; i < 15; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.cssText = `
+                width: ${Math.random() * 4 + 2}px;
+                height: ${Math.random() * 4 + 2}px;
+                left: ${Math.random() * 100}%;
+                animation-delay: ${Math.random() * 15}s;
+                animation-duration: ${Math.random() * 10 + 10}s;
+                opacity: ${Math.random() * 0.5 + 0.2};
+            `;
+            particles.appendChild(particle);
+        }
+        
+        // State
+        let config = {};
+        
+        // Load configuration
+        async function loadConfig() {
+            try {
+                const response = await fetch('/api/config');
+                config = await response.json();
+                
+                // Populate form fields
+                document.getElementById('serverName').value = config.server.name || '';
+                document.getElementById('serverIp').value = config.server.ip || '';
+                document.getElementById('serverPort').value = config.server.port || '';
+                document.getElementById('serverTagline').value = config.server.tagline || '';
+                document.getElementById('serverDescription').value = config.server.description || '';
+                document.getElementById('discordLink').value = config.discord.link || '';
+                
+                // Render features
+                renderFeatures(config.server.features || []);
+                
+                // Render ranks
+                renderRanks(config.ranks || []);
+            } catch (error) {
+                showToast('Failed to load configuration', 'error');
+            }
+        }
+        
+        // Render features
+        function renderFeatures(features) {
+            const container = document.getElementById('featuresList');
+            container.innerHTML = features.map((feature, index) => `
+                <div class="feature-item">
+                    <input type="text" value="${feature}" data-index="${index}" class="feature-input">
+                    <button class="btn-small btn-remove" onclick="removeFeature(${index})">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+        
+        // Add feature
+        document.getElementById('addFeatureBtn').addEventListener('click', () => {
+            const inputs = document.querySelectorAll('.feature-input');
+            const features = Array.from(inputs).map(input => input.value);
+            features.push('New Feature');
+            renderFeatures(features);
+        });
+        
+        // Remove feature
+        function removeFeature(index) {
+            const inputs = document.querySelectorAll('.feature-input');
+            const features = Array.from(inputs).map(input => input.value);
+            features.splice(index, 1);
+            renderFeatures(features);
+        }
+        
+        // Render ranks
+        function renderRanks(ranks) {
+            const container = document.getElementById('ranksContainer');
+            container.innerHTML = ranks.map((rank, index) => `
+                <div class="rank-editor" data-rank-index="${index}">
+                    <div class="rank-editor-header">
+                        <div class="rank-color" style="background: ${rank.color}"></div>
+                        <span>${rank.name}</span>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Rank Name</label>
+                            <input type="text" class="rank-name" value="${rank.name}" data-rank="${index}">
+                        </div>
+                        <div class="form-group">
+                            <label>Price</label>
+                            <input type="text" class="rank-price" value="${rank.price}" data-rank="${index}">
+                        </div>
+                        <div class="form-group">
+                            <label>Color</label>
+                            <input type="color" class="rank-color-input" value="${rank.color}" data-rank="${index}">
+                        </div>
+                    </div>
+                    <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary); font-size: 0.85rem;">Perks</label>
+                    <div class="perks-list" data-rank="${index}">
+                        ${rank.perks.map((perk, perkIndex) => `
+                            <div class="perk-item">
+                                <input type="text" value="${perk}" data-perk="${perkIndex}">
+                                <button class="btn-small btn-remove" onclick="removePerk(${index}, ${perkIndex})">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <button class="add-perk-btn" onclick="addPerk(${index})">
+                        <i class="fas fa-plus"></i>
+                        Add Perk
+                    </button>
+                </div>
+            `).join('');
+        }
+        
+        // Add perk
+        function addPerk(rankIndex) {
+            const rank = config.ranks[rankIndex];
+            rank.perks.push('New Perk');
+            renderRanks(config.ranks);
+        }
+        
+        // Remove perk
+        function removePerk(rankIndex, perkIndex) {
+            config.ranks[rankIndex].perks.splice(perkIndex, 1);
+            renderRanks(config.ranks);
+        }
+        
+        // Collect data from form
+        function collectData() {
+            const data = {
+                server: {
+                    name: document.getElementById('serverName').value,
+                    ip: document.getElementById('serverIp').value,
+                    port: parseInt(document.getElementById('serverPort').value),
+                    tagline: document.getElementById('serverTagline').value,
+                    description: document.getElementById('serverDescription').value,
+                    features: Array.from(document.querySelectorAll('.feature-input')).map(input => input.value)
+                },
+                discord: {
+                    link: document.getElementById('discordLink').value
+                },
+                ranks: []
+            };
+            
+            // Collect rank data
+            document.querySelectorAll('.rank-editor').forEach((editor, index) => {
+                const rank = {
+                    name: editor.querySelector('.rank-name').value,
+                    price: editor.querySelector('.rank-price').value,
+                    color: editor.querySelector('.rank-color-input').value,
+                    perks: Array.from(editor.querySelectorAll('.perks-list .perk-item input')).map(input => input.value)
+                };
+                data.ranks.push(rank);
+            });
+            
+            return data;
+        }
+        
+        // Save all changes
+        document.getElementById('saveAllBtn').addEventListener('click', async () => {
+            const data = collectData();
+            
+            try {
+                const response = await fetch('/api/config', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok && result.success) {
+                    showToast('Changes saved successfully!', 'success');
+                    config = { ...config, ...data };
+                } else {
+                    throw new Error(result.error || 'Failed to save');
+                }
+            } catch (error) {
+                showToast(error.message, 'error');
+            }
+        });
+        
+        // Logout
+        document.getElementById('logoutBtn').addEventListener('click', async () => {
+            try {
+                await fetch('/api/logout', { method: 'POST' });
+                window.location.href = 'login.html';
+            } catch (error) {
+                showToast('Logout failed', 'error');
+            }
+        });
+        
+        // Toast notification
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+                <span>${message}</span>
+            `;
+            container.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+        
+        // Check authentication
+        fetch('/api/auth/status')
+            .then(res => res.json())
+            .then(data => {
+                if (!data.authenticated) {
+                    window.location.href = 'login.html';
+                } else {
+                    loadConfig();
+                }
+            });
+    </script>
+</body>
+</html>

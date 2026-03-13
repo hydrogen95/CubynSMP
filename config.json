@@ -1,0 +1,120 @@
+{
+  "server": {
+    "name": "CubynSMP",
+    "ip": "suffer.srein.xyz",
+    "port": 25567,
+    "description": "CubynSMP is a competitive Economy Survival Minecraft server inspired by the gameplay style of DonutSMP. Players progress by earning money, trading resources, building bases, and competing with other players in a dynamic economy-driven survival world.",
+    "features": [
+      "Player-driven economy system",
+      "Trading and market gameplay",
+      "Competitive survival gameplay",
+      "Grinding and money progression",
+      "Balanced PvP mechanics",
+      "Rank progression system",
+      "Community-based survival economy"
+    ],
+    "tagline": "Economy Survival Reimagined"
+  },
+  "discord": {
+    "link": "https://discord.gg/XaUBr97NUW"
+  },
+  "ranks": [
+    {
+      "name": "VIP",
+      "price": "₱50",
+      "color": "#00AA00",
+      "perks": [
+        "2x Homes",
+        "10x Concurrent Auctions",
+        "/grindstone Command",
+        "/disposal Command",
+        "/ec Command",
+        "/kit Command"
+      ]
+    },
+    {
+      "name": "MVP",
+      "price": "₱100",
+      "color": "#00AAAA",
+      "perks": [
+        "3x Homes",
+        "15x Concurrent Auctions",
+        "/cartographytable Command",
+        "/stonecutter Command",
+        "/disposal Command",
+        "/craft Command",
+        "/grindstone Command",
+        "/kit Command"
+      ]
+    },
+    {
+      "name": "ELITE",
+      "price": "₱150",
+      "color": "#AA00AA",
+      "perks": [
+        "4x Homes",
+        "20x Concurrent Auctions",
+        "/craft Command",
+        "/ec Command",
+        "/disposal Command",
+        "/stonecutter Command",
+        "/grindstone Command",
+        "/repair Command",
+        "/anvil Command",
+        "/cartographytable Command",
+        "/kit Command"
+      ]
+    },
+    {
+      "name": "GIANT",
+      "price": "₱200",
+      "color": "#FFAA00",
+      "perks": [
+        "5x Homes",
+        "25x Concurrent Auctions",
+        "/craft Command",
+        "/ec Command",
+        "/disposal Command",
+        "/stonecutter Command",
+        "/grindstone Command",
+        "/anvil Command",
+        "/smithingtable Command",
+        "/cartographytable Command",
+        "/repair Command",
+        "/ptime Command",
+        "/kit Command"
+      ]
+    },
+    {
+      "name": "TITAN",
+      "price": "₱400",
+      "color": "#FF5555",
+      "perks": [
+        "7x Homes",
+        "30x Concurrent Auctions",
+        "/craft Command",
+        "/cartographytable Command",
+        "/ec Command",
+        "/stonecutter Command",
+        "/grindstone Command",
+        "/anvil Command",
+        "/smithingtable Command",
+        "/ptime Command",
+        "/pweather Command",
+        "/repair Command",
+        "/near Command",
+        "/kit Command"
+      ]
+    }
+  ],
+  "admin": {
+    "username": "admin",
+    "password": "cubyn2024"
+  },
+  "theme": {
+    "primary": "#0a1628",
+    "secondary": "#1e3a5f",
+    "accent": "#ffd700",
+    "glow": "#00d4ff"
+  }
+}
